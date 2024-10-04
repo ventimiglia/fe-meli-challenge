@@ -7,7 +7,7 @@ import Modal from './components/Modal/Modal';
 
 import './App.css';
 import { useFetchItems } from './hooks/useFetchItems';
-import useDebounce from './hooks/useDebounce';
+import useSearch from './hooks/useSearch';
 
 export type TItem = {
   id: number;
@@ -21,15 +21,17 @@ export type TItem = {
   };
 };
 
-const LazyItemDetailDialog = lazy(() => import('./components/ItemDetailDialog/ItemDetailDialog'));
+const LazyItemDetailDialog = lazy(
+  () => import('./components/ItemDetailDialog/ItemDetailDialog')
+);
 
 export default function Component() {
   const [selectedItem, setSelectedItem] = useState<TItem | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
-
+  
   const { items, loading, hasMore, setPage, setItems } =
-  useFetchItems(debouncedSearchTerm);
+  useFetchItems(searchTerm);
+  
   const observer = useRef<IntersectionObserver | null>(null);
   
   const lastItemRef = useCallback(
@@ -45,17 +47,13 @@ export default function Component() {
     },
     [loading, hasMore, setPage]
   );
-
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-    setPage(event.target.value === '' ? 1 : 0);
-    setItems([]);
-  };
-
+  
   const handleItemClick = (item: TItem) => {
     setSelectedItem(item);
   };
-
+  
+  useSearch(searchTerm, setPage, setItems);
+  
   return (
     <main className='item-list'>
       <header className='item-list__header'>
@@ -65,7 +63,7 @@ export default function Component() {
             type='text'
             placeholder='Search items...'
             value={searchTerm}
-            onChange={handleSearch}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className='item-list__input'
             aria-label='Search through items'
           />

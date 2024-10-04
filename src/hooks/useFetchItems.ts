@@ -18,11 +18,15 @@ const fetchItems = async (
   limit: number,
   search: string = ''
 ): Promise<TFetchItemsResponse> => {
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   if (search) {
     const response = await fetch(`http://localhost:5000/items?_page=${page}`);
     const data: TItem[] = await response.json();
+
+    if(!data) {
+      return [];
+    }
 
     const filteredData = data.filter((item) =>
       item.title.toLowerCase().includes(search.toLowerCase())
