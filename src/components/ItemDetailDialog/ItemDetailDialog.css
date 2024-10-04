@@ -1,0 +1,22 @@
+.item-detail {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 80px 1fr 1fr;
+}
+.item-detail__image {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+.item-detail__image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.item-detail__information {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

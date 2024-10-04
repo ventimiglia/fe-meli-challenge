@@ -1,0 +1,127 @@
+#root {
+  margin: 0 auto;
+}
+
+.item-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  width: 400px;
+}
+
+.item-list__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.item-list__search-container {
+  display: flex;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.item-list__input {
+  padding: 16px 16px 16px 40px;
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  width: 100%;
+  color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-list__input:focus {
+  outline: none;
+}
+
+.item-list__search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0a0a0;
+}
+
+.item-list__items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item-list__item {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+.item-list__item:hover {
+  background-color: #f9f9f9ac;
+}
+
+.item-list__item-content {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.item-list__item-image {
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+}
+
+.item-list__item-information {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-list__item-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.item-list__item-description {
+  color: #666;
+}
+
+.item-list__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.item-list__loading-icon {
+  height: 24px;
+  width: 24px;
+  color: #ffe600;
+  animation: spin 1s linear infinite;
+}
+
+.item-list__loading-text {
+  margin-left: 8px;
+  color: #999;
+}
+
+.item-list__no-more-items,
+.item-list__no-items {
+  text-align: center;
+  color: #999;
+  padding: 16px;
+}
+
+/* Animación de carga */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
